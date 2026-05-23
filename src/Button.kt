@@ -1,33 +1,42 @@
-import java.awt.*
-import java.awt.event.ActionEvent
-import java.awt.event.ActionListener
+import java.awt.Component
 import javax.swing.*
 
-class ButtonApp : JFrame(), ActionListener {
-    init {
-        title = "Зеленая кнопка"
-        setSize(300, 200)
-        defaultCloseOperation = EXIT_ON_CLOSE
-        layout = BorderLayout()
-
-        val greenButton = JButton("Нажми!")
-        greenButton.background = Color(76, 175, 80)  // Зеленый
-        greenButton.foreground = Color.WHITE
-        greenButton.font = Font("Arial", Font.BOLD, 18)
-        greenButton.preferredSize = Dimension(150, 60)
-        greenButton.addActionListener(this)
-
-        add(greenButton, BorderLayout.SOUTH)
-        pack()
-        setLocationRelativeTo(null)  // По центру экрана
-        isVisible = true
-    }
-
-    override fun actionPerformed(e: ActionEvent?) {
-        JOptionPane.showMessageDialog(this, "Кнопка нажата!")
-    }
-}
-
 fun main() {
-    SwingUtilities.invokeLater { ButtonApp() }
+    SwingUtilities.invokeLater {
+        val frame = JFrame("Окно с текстом и кнопками")
+        frame.defaultCloseOperation = JFrame.EXIT_ON_CLOSE
+        frame.setSize(400, 300)
+        frame.setLocationRelativeTo(null)
+
+        val label = JLabel("Нажми кнопку")
+        label.alignmentX = Component.CENTER_ALIGNMENT
+
+        val button1 = JButton("Первая кнопка")
+        button1.alignmentX = Component.CENTER_ALIGNMENT
+
+        val button2 = JButton("Вторая кнопка")
+        button2.alignmentX = Component.CENTER_ALIGNMENT
+
+        button1.addActionListener {
+            label.text = "Нажата первая кнопка"
+        }
+
+        button2.addActionListener {
+            label.text = "Нажата вторая кнопка"
+        }
+
+        val panel = JPanel()
+        panel.layout = BoxLayout(panel, BoxLayout.Y_AXIS)
+
+        panel.add(Box.createVerticalGlue())
+        panel.add(label)
+        panel.add(Box.createVerticalStrut(10))
+        panel.add(button1)
+        panel.add(Box.createVerticalStrut(10))
+        panel.add(button2)
+        panel.add(Box.createVerticalGlue())
+
+        frame.contentPane = panel
+        frame.isVisible = true
+    }
 }
