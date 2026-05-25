@@ -4,13 +4,14 @@ data class Product(val name: String, val price: Double)
 val products = listOf(
     Product("Apple", 1.5),
     Product("Banana", 2.0),
-    Product("Orange", 3.0)
+    Product("Orange", 3.0),
+    Product("MANGO", 5.0)
 )
 
 // Селектор: it.price (берем цену каждого продукта)
 val totalPrice = products.sumOf { it.price }
 
-println(totalPrice) // Выведет: 6.5
+println(totalPrice) // Выведет: 11.5
 }
 
 /*fun main() {
