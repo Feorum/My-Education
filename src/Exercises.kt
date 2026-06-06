@@ -1,4 +1,33 @@
-data class Employee (val name: String, var salary: Int)
+const val letters = "QWERTYUIOPASDFGHJKLZXCVBNM1234567890qwertyuiopasdfghjklzxcvbnm@#$&*"
+
+fun genPassRandom()  {
+    var len: Int? = null
+    println("Это Генератор пароля!@TM")
+    while (len == null) {
+        print("Введите числом от 8 до 16 размер пароля: ")
+        val id = readln().toIntOrNull()
+        if (id == null) {
+            println("Это не число")
+        } else if (id !in 8..16) {
+            println("Не входит в допустимый промежуток")
+        } else {
+            len = id
+        }
+    }
+    println("Ваш размер пароля: $len")
+    val password = (1..len).map {letters.random()}.joinToString("")
+    println(password)
+
+}
+
+fun main() {
+    genPassRandom()
+}
+// Что необходимо: Генератор пароля.
+// План: выбираю рандомный из листа символ, присоединяю его к выходящему результату. Количество
+// символов тоже рандом(в заданом промежутке естесна) ((промежуток запршивается))
+
+/*data class Employee (val name: String, var salary: Int)
 
 fun employeeById(id: Int) = when(id) {
     1 -> Employee("Mary", 20)
@@ -12,7 +41,7 @@ fun salaryById(id: Int) = employeeById(id)?.salary ?: 0
 
 fun main() {
     println((1..5).sumOf { id -> salaryById(id) })
-}
+}*/
 
 /*import kotlin.random.Random
 

@@ -1,4 +1,4 @@
-fun main(){
+/*fun main(){
 data class Product(val name: String, val price: Double)
 
 val products = listOf(
@@ -12,7 +12,7 @@ val products = listOf(
 val totalPrice = products.sumOf { it.price }
 
 println(totalPrice) // Выведет: 11.5
-}
+}*/
 
 /*fun main() {
     val nullString: String? = null
