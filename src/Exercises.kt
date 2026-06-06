@@ -4,20 +4,39 @@ fun genPassRandom()  {
     var len: Int? = null
     println("Это Генератор пароля!@TM")
     while (len == null) {
-        print("Введите числом от 8 до 16 размер пароля: ")
+        print("Введите числом от 8 до 24 размер пароля: ")
         val id = readln().toIntOrNull()
         if (id == null) {
             println("Это не число")
-        } else if (id !in 8..16) {
+        } else if (id !in 8..24) {
             println("Не входит в допустимый промежуток")
         } else {
             len = id
         }
     }
     println("Ваш размер пароля: $len")
-    val password = (1..len).map {letters.random()}.joinToString("")
-    println(password)
+    var pass: Boolean = false
+    while (!pass) {
+        var hasUpper = false
+        var hasLower = false
+        var hasDigit = false
+        var hasSpecial = false
+        val password = (1..len).map {letters.random()}.joinToString("")
+        for (ch in password) {
+            when {
+                ch.isUpperCase() -> hasUpper = true
+                ch.isLowerCase() -> hasLower = true
+                ch.isDigit()     -> hasDigit = true
+                ch in "@#$&*"    -> hasSpecial = true   // свой набор
+            }
+            if (hasUpper && hasLower && hasDigit && hasSpecial) {
+                println(password)
+                return
+            }
+        }
+// потом проверяешь:
 
+    }
 }
 
 fun main() {
