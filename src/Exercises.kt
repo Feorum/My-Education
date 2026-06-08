@@ -1,4 +1,4 @@
-const val letters = "QWERTYUIOPASDFGHJKLZXCVBNM1234567890qwertyuiopasdfghjklzxcvbnm@#$&*"
+const val letters = "QWERTYUIOPASDFGHJKLZXCVBNM1234567890qwertyuiopasdfghjklzxcvbnm@#$&*=."
 
 fun genPassRandom()  {
     var len: Int? = null
@@ -15,8 +15,8 @@ fun genPassRandom()  {
         }
     }
     println("Ваш размер пароля: $len")
-    var pass: Boolean = false
-    while (!pass) {
+
+    while (true) {
         var hasUpper = false
         var hasLower = false
         var hasDigit = false
@@ -27,14 +27,13 @@ fun genPassRandom()  {
                 ch.isUpperCase() -> hasUpper = true
                 ch.isLowerCase() -> hasLower = true
                 ch.isDigit()     -> hasDigit = true
-                ch in "@#$&*"    -> hasSpecial = true   // свой набор
-            }
-            if (hasUpper && hasLower && hasDigit && hasSpecial) {
-                println(password)
-                return
-            }
+                ch in "@#$&*.="  -> hasSpecial = true   // свой набор
+            } // потом проверяешь:
         }
-// потом проверяешь:
+        if (hasUpper && hasLower && hasDigit && hasSpecial) {
+            println("Сгенерированный пароль: $password")
+            return
+        }
 
     }
 }
